@@ -2,7 +2,7 @@
 # Warmup
 
 Download the [Wine Quality
-dataset](https://archive-beta.ics.uci.edu/dataset/186/wine+quality). Choose the
+dataset](https://archive.ics.uci.edu/dataset/186/wine+quality). Choose the
 one that corresponds to your preference in wine.
 
 ## Regression
