@@ -59,7 +59,7 @@ def DT_model():
     y_train = train[:, -1] #Target
     X_test = test[:, 0:-1] #Features
     y_test = test[:, -1] #Target
-    DT_model = DecisionTreeClassifier()
+    DT_model = DecisionTreeClassifier(random_state=0)
     DT_model.fit(X_train, y_train)
 
     #Evaluate the model
