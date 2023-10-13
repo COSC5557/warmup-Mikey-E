@@ -66,13 +66,13 @@ def DT_model():
 
     #First, get a baseline
     y_base = np.random.randint(0, 2, size=y_test.size)#Array of random 0s & 1s
-    MAPE_base = np.mean(np.abs(y_test - y_base)) * 100 #Mean absolute percentage error
-    print("Baseline error for classification: {0:.3f}%".format(MAPE_base))
+    acc_base = y_base == y_test
+    print("Baseline acc for classification: {0:.3f}%".format(acc_base.sum()/len(acc_base) * 100))
 
     #Second, get the trained model's performance
     y_pred = DT_model.predict(X_test)
-    MAPE_pred = np.mean(np.abs(y_test - y_pred)) * 100
-    print("Tree's error for classification: {0:.3f}%".format(MAPE_pred))
+    acc_tree = y_pred == y_test
+    print("Tree acc for classification: {0:.3f}%".format(acc_tree.sum()/len(acc_tree) * 100))
 
 def view_data():
     """Brief viewing of the data head"""
