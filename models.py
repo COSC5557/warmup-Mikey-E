@@ -29,13 +29,17 @@ def LR_model():
 
     #First, get a baseline
     y_base = np.median(y_test)#Equivalent of random-baseline guessing for regression
-    MAPE_base = np.mean(np.abs(y_test - y_base)) * 100 #Mean absolute percentage error
-    print("Baseline error for regression: {0:.3f}%".format(MAPE_base))
+    acc_base = y_base == y_test
+    print("Baseline acc for regression: {0:.3f}%".format(acc_base.sum()/len(acc_base) * 100))
 
     #Second, get the trained model's performance
     y_pred = LR_model.predict(X_test)
-    MAPE_pred = np.mean(np.abs(y_test - y_pred)) * 100
-    print("Linear model's error for regression: {0:.3f}%".format(MAPE_pred))
+
+    #To compare to whole numbers, these predicted values can be rounded up or down to the closest whole number
+    #That way we can see if the LR model is really predicting the proper quality in the discretized fashion that we want
+    y_pred = np.round(y_pred)
+    acc_LR = y_pred == y_test
+    print("Linear model's acc for regression: {0:.3f}%".format(acc_LR.sum()/len(acc_LR) * 100))
 
 def DT_model():
     """Decision tree model for classification"""
@@ -67,7 +71,7 @@ def DT_model():
     #First, get a baseline
     y_base = np.random.randint(0, 2, size=y_test.size)#Array of random 0s & 1s
     acc_base = y_base == y_test
-    print("Baseline acc for classification: {0:.3f}%".format(acc_base.sum()/len(acc_base) * 100))
+    print("Baseline acc for classification: {0:.3f}%".format(acc_base.sum()/len(acc_base) * 100))#Hovers around 50%
 
     #Second, get the trained model's performance
     y_pred = DT_model.predict(X_test)
